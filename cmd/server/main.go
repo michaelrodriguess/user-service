@@ -1,9 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"log"
+
+	"github.com/joho/godotenv"
+	mysqldb "github.com/michaelrodriguess/user-service/pkg/db"
 )
 
 func main() {
-	fmt.Println("Hello World")
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("⚠️  .env not found, using default environment variables")
+	}
+
+	mysqldb.Init()
 }
