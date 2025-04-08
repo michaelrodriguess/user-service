@@ -20,7 +20,9 @@ type RegisterRequest struct {
 }
 
 type RegisterResponse struct {
-	AccessToken string `json:"access_token"`
+	Token string `json:"token"`
+	Email string `json:"email"`
+	Role  string `json:"role"`
 }
 
 func NewAuthClient() *AuthClient {
@@ -61,5 +63,5 @@ func (c *AuthClient) GenerateToken(email, password, role string) (string, error)
 		return "", err
 	}
 
-	return respData.AccessToken, nil
+	return respData.Token, nil
 }
