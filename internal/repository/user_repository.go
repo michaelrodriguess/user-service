@@ -52,3 +52,30 @@ func (r *UserRepository) GetAllAdminsUser() ([]model.GetsUsersResponse, error) {
 
 	return adminsResponse, nil
 }
+
+func (r *UserRepository) GetAllUsers() ([]model.GetsUsersResponse, error) {
+	var users []model.User
+
+	err := r.db.Where("status = true").Find(&users).Error
+	if err != nil {
+		return nil, err
+	}
+
+	var usersResponse []model.GetsUsersResponse
+
+	i := 0
+	for i < len(users) {
+		usersResponse = append(usersResponse, model.GetsUsersResponse{
+			ID:          users[i].ID,
+			Name:        users[i].Name,
+			Email:       users[i].Email,
+			Role:        users[i].Role,
+			User_Status: users[i].User_Status,
+			CreatedAt:   users[i].CreatedAt,
+			UpdatedAt:   users[i].UpdatedAt,
+		})
+		i++
+	}
+
+	return usersResponse, nil
+}

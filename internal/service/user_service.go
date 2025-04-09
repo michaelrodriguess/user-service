@@ -73,3 +73,13 @@ func (s *UserService) GetAllAdminsUser() ([]model.GetsUsersResponse, error) {
 
 	return users, nil
 }
+
+func (s *UserService) GetAllUsers() ([]model.GetsUsersResponse, error) {
+
+	users, err := s.repo.GetAllUsers()
+	if err != nil {
+		return nil, err
+	}
+
+	return users, nil
+}

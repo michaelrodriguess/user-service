@@ -33,6 +33,7 @@ func main() {
 
 	r.POST("/users", handler.CreateUserHandler)
 	r.GET("/admin-users", handler.GetAllAdminsUser)
+	r.GET("/users", handler.GetAllUsers)
 
 	port := os.Getenv("PORT")
 	if port == "" {

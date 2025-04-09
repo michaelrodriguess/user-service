@@ -47,3 +47,15 @@ func (h *UserHandler) GetAllAdminsUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, resp)
 }
+
+func (h *UserHandler) GetAllUsers(c *gin.Context) {
+
+	resp, err := h.service.GetAllUsers()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, resp)
+}
