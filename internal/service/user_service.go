@@ -28,6 +28,10 @@ func (s *UserService) CreateUserService(req model.UserRequest) (*model.UserRespo
 		return nil, errors.New("email already registered")
 	}
 
+	if req.Role == "" {
+		req.Role = "user"
+	}
+
 	user := model.User{
 		ID:          uuid.New().String(),
 		Name:        req.Name,
