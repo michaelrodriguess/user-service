@@ -63,3 +63,13 @@ func (s *UserService) CreateUserService(req model.UserRequest) (*model.UserRespo
 		UpdatedAt:   user.UpdatedAt,
 	}, nil
 }
+
+func (s *UserService) GetAllAdminsUser() ([]model.UserAdminsResponse, error) {
+
+	users, err := s.repo.GetAllAdminsUser()
+	if err != nil {
+		return nil, err
+	}
+
+	return users, nil
+}

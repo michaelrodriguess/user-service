@@ -35,3 +35,15 @@ func (h *UserHandler) CreateUserHandler(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, resp)
 }
+
+func (h *UserHandler) GetAllAdminsUser(c *gin.Context) {
+
+	resp, err := h.service.GetAllAdminsUser()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, resp)
+}

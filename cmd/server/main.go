@@ -32,6 +32,7 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/users", handler.CreateUserHandler)
+	r.GET("/admin-users", handler.GetAllAdminsUser)
 
 	port := os.Getenv("PORT")
 	if port == "" {
