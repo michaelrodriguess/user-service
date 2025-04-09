@@ -100,5 +100,7 @@ func (s *UserService) DeleteUserByUUID(uuidUser string) error {
 		return err
 	}
 
+	// TODO: Handle with invalid accessToken of user
+
 	return nil
 }
