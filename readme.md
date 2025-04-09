@@ -9,6 +9,7 @@ A user management service built in Go to provide authentication and authorizatio
 - ✅ Validate email uniqueness
 - ✅ Integrate with authentication service
 - ✅ Manage user status
+- ✅ Get all admins (`/admin-users`)
 - ✅ Docker and Makefile for easy setup
 
 ---
@@ -79,8 +80,6 @@ AUTH_SERVICE_URL=http://localhost:8080
 ```
 
 ## 📌 Future Roadmap
-- [ ] Validate Login
-- [ ] Get admin users
 - [ ] Get normal users
 - [ ] Update user
 - [ ] Soft delete user
