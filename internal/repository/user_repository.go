@@ -26,7 +26,7 @@ func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 	return &user, nil
 }
 
-func (r *UserRepository) GetAllAdminsUser() ([]model.UserAdminsResponse, error) {
+func (r *UserRepository) GetAllAdminsUser() ([]model.GetsUsersResponse, error) {
 	var users []model.User
 
 	err := r.db.Where("role = 'admin'").Find(&users).Error
@@ -34,11 +34,11 @@ func (r *UserRepository) GetAllAdminsUser() ([]model.UserAdminsResponse, error) 
 		return nil, err
 	}
 
-	var adminsResponse []model.UserAdminsResponse
+	var adminsResponse []model.GetsUsersResponse
 
 	i := 0
 	for i < len(users) {
-		adminsResponse = append(adminsResponse, model.UserAdminsResponse{
+		adminsResponse = append(adminsResponse, model.GetsUsersResponse{
 			ID:          users[i].ID,
 			Name:        users[i].Name,
 			Email:       users[i].Email,

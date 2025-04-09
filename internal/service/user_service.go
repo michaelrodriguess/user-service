@@ -64,7 +64,7 @@ func (s *UserService) CreateUserService(req model.UserRequest) (*model.UserRespo
 	}, nil
 }
 
-func (s *UserService) GetAllAdminsUser() ([]model.UserAdminsResponse, error) {
+func (s *UserService) GetAllAdminsUser() ([]model.GetsUsersResponse, error) {
 
 	users, err := s.repo.GetAllAdminsUser()
 	if err != nil {

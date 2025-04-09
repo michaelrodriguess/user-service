@@ -32,7 +32,7 @@ type UserResponse struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
-type UserAdminsResponse struct {
+type GetsUsersResponse struct {
 	ID          string    `json:"id"`
 	Name        string    `json:"name"`
 	Email       string    `json:"email"`
