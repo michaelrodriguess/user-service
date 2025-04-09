@@ -100,7 +100,28 @@ func (s *UserService) DeleteUserByUUID(uuidUser string) error {
 		return err
 	}
 
-	// TODO: Handle with invalid accessToken of user
+	// TODO: Handle with to make a accessToken invalid
 
 	return nil
+}
+
+func (s *UserService) UpdateUserByUUID(uuidUser string, data model.UpdateUserRequest) error {
+	_, err := s.repo.GetUserByUuid(uuidUser)
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return errors.New("user not found")
+		}
+
+		return err
+	}
+
+	err = s.repo.UpdateUserByUUID(uuidUser, data)
+	if err != nil {
+		return err
+	}
+
+	// TODO: Handle with to make a accessToken invalid
+
+	return nil
+
 }

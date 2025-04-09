@@ -35,6 +35,7 @@ func main() {
 	r.GET("/admin-users", handler.GetAllAdminsUser)
 	r.GET("/users", handler.GetAllUsers)
 	r.DELETE("/users", handler.DeleteUserHandler)
+	r.PATCH("/users", handler.UpdateUserHandler)
 
 	port := os.Getenv("PORT")
 	if port == "" {

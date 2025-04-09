@@ -78,3 +78,31 @@ func (h *UserHandler) DeleteUserHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "User with uuid " + uuidUser + " deleted(SOFT) successfully"})
 
 }
+
+func (h *UserHandler) UpdateUserHandler(c *gin.Context) {
+	uuidUser := c.Query("uuid_user")
+	if uuidUser == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "uuid_user is require."})
+
+		return
+	}
+
+	var req model.UpdateUserRequest
+
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request." + err.Error()})
+
+		return
+	}
+
+	err = h.service.UpdateUserByUUID(uuidUser, req)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating user. " + err.Error()})
+
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"message": "User with uuid " + uuidUser + " updated successfully"})
+
+}

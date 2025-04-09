@@ -102,3 +102,13 @@ func (r *UserRepository) DeleteUserByUUID(uuidUser string) error {
 	}
 	return nil
 }
+
+func (r *UserRepository) UpdateUserByUUID(uuidUser string, data model.UpdateUserRequest) error {
+	var user model.User
+	err := r.db.Model(&user).Where("id = ?", uuidUser).Updates(data).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
