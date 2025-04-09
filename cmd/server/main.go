@@ -34,6 +34,7 @@ func main() {
 	r.POST("/users", handler.CreateUserHandler)
 	r.GET("/admin-users", handler.GetAllAdminsUser)
 	r.GET("/users", handler.GetAllUsers)
+	r.DELETE("/users", handler.DeleteUserHandler)
 
 	port := os.Getenv("PORT")
 	if port == "" {

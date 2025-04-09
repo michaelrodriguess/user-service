@@ -8,6 +8,7 @@ import (
 	"github.com/michaelrodriguess/user-service/internal/model"
 	"github.com/michaelrodriguess/user-service/internal/repository"
 	"github.com/michaelrodriguess/user-service/pkg/client"
+	"gorm.io/gorm"
 )
 
 type UserService struct {
@@ -82,4 +83,22 @@ func (s *UserService) GetAllUsers() ([]model.GetsUsersResponse, error) {
 	}
 
 	return users, nil
+}
+
+func (s *UserService) DeleteUserByUUID(uuidUser string) error {
+	_, err := s.repo.GetUserByUuid(uuidUser)
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return errors.New("user not found")
+		}
+
+		return err
+	}
+
+	err = s.repo.DeleteUserByUUID(uuidUser)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

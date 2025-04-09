@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"errors"
+
 	"github.com/michaelrodriguess/user-service/internal/model"
 	"gorm.io/gorm"
 )
@@ -78,4 +80,25 @@ func (r *UserRepository) GetAllUsers() ([]model.GetsUsersResponse, error) {
 	}
 
 	return usersResponse, nil
+}
+
+func (r *UserRepository) GetUserByUuid(uuidUser string) (model.User, error) {
+	var user model.User
+	err := r.db.Where("id = ?", uuidUser).First(&user).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return model.User{}, errors.New("user not found")
+		}
+		return model.User{}, err
+	}
+	return user, nil
+}
+
+func (r *UserRepository) DeleteUserByUUID(uuidUser string) error {
+	var user model.User
+	err := r.db.Model(&user).Where("id = ?", uuidUser).Update("status", false).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }
