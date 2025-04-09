@@ -10,6 +10,7 @@ A user management service built in Go to provide authentication and authorizatio
 - ✅ Integrate with authentication service
 - ✅ Manage user status
 - ✅ Get all admins (`/admin-users`)
+- ✅ Get all users (`/users`)
 - ✅ Docker and Makefile for easy setup
 
 ---
@@ -80,9 +81,9 @@ AUTH_SERVICE_URL=http://localhost:8080
 ```
 
 ## 📌 Future Roadmap
-- [ ] Get normal users
 - [ ] Update user
 - [ ] Soft delete user
+- [ ] Create a new field on user model to handle which applications the user has access to
 
 ## Developed by
 Michael Araujo Rodrigues — @michaelrodriguess
